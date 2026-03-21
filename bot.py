@@ -4,21 +4,64 @@ import feedparser
 import subprocess
 import datetime
 import random
+import sqlite3
 
-#dt = datetime.datetime.now()
-#if (dt.hour > 15 or dt.hour < 5) and dt.minute < 11: 
-if False: 
-    url_am = "https://trumpstruth.org/feed"
-    am = feedparser.parse(url_am)
-    url_art = am.entries[0].link
-    subprocess.run(["wkhtmltoimage", "--width", "800", "--crop-y", "999", "--crop-h", "800", url_art, "bot_temp.png"])
-else: 
-    url_am = "https://www.yna.co.kr/rss/news.xml"
-    am = feedparser.parse(url_am)
-    url_art = am.entries[0].link
-    tit_art = am.entries[0].title
-    subprocess.run(["wkhtmltoimage", "--width", "800", "--crop-h", "800", url_art, "bot_temp.png"])
-    subprocess.run(["right/getfed.sh", url_art, tit_art])
+try: 
+    cn = sqlite3.connect("turk.db")
+    cs = cn.cursor()
+
+    cs.execute('''
+        create table if not exists feeds (
+            url text primary key, 
+            title text not null, 
+            lang text not null, 
+            date text not null, 
+            used integer
+        )
+    ''')
+
+    f = feedparser.parse("https://www.yna.co.kr/rss/news.xml")
+    now = datetime.datetime.now()
+    # this is NOT their published date. 
+    date = now.strftime("%Y-%m-%d-%H%M")
+    for entry in f.entries[:3]: 
+        cs.execute('''
+            insert or ignore into feeds 
+            (url, title, lang, date, used) 
+            values (?, ?, ?, ?, ?)
+        ''', 
+        (entry.link, entry.title, 'ko', date, 0))
+
+    cs.execute('''
+        select * from feeds 
+        where used = 0 
+        order by date DESC
+    ''')
+    feeds = cs.fetchall()
+    if (len(feeds) == 0): 
+        feed = f.entries[0]
+        f_url = feed.link
+        f_title = feed.title
+        f_lang = "ko"
+    else: 
+        feed = feeds[0]
+        f_url = feed[0]
+        f_title = feed[1]
+        f_lang = feed[2]
+        cs.execute('''
+            update feeds set used = 1 
+            where url = ? 
+        ''', 
+        (f_url,))
+    cn.commit();
+except Exception as e: 
+    print(e)
+    cn.rollback();
+finally: 
+    cn.close();
+
+subprocess.run(["wkhtmltoimage", "--width", "800", "--crop-h", "800", f_url, "bot_temp.png"])
+subprocess.run(["right/getfed.sh", f_url, f_title])
 
 ### NOTE: fka. top-news.py 
 dt = datetime.datetime.now()
@@ -46,8 +89,7 @@ else:
         {"nm": "GDN3",   "url": "https://www.theguardian.com/world/rss"},
         {"nm": "GDNC",   "url": "https://www.theguardian.com/uk/commentisfree/rss"},
         {"nm": "HILL",   "url": "https://thehill.com/feed/"},
-        {"nm": "MSNBC",  "url": "https://www.ms.now/rss"},
-        {"nm": "POPE",   "url": "https://www.vaticannews.va/en.rss.xml"}
+        {"nm": "MSNBC",  "url": "https://www.ms.now/rss"}
     ]
 
 try: 
