@@ -1,4 +1,8 @@
 # turk 
+- (26. 3. 22 Part3) kiwipiepyという形態素解析器を使った簡単な統計を行うためのコードを追加しました。
+  - https://github.com/anissatta/turk/blob/main/bot.py
+  - https://github.com/anissatta/turk/blob/main/get-stat1.py
+  - https://github.com/anissatta/turk/blob/main/print_mdjson.sh
 - (26. 3. 22 Part2) 上部に表示されるニュースについても同様の対策を実施しました。これに伴い日中と夜間とでのフィード取得先の区別が無くなります。 
   - https://github.com/anissatta/turk/blob/main/bot.py
 - (26. 3. 22 Part1) 聯合ニュースの同じ記事が連続して表示される事態への対策として下記コードを若干改良しました。
