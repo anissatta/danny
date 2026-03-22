@@ -80,7 +80,10 @@ outlets = [
     {"lng": "en", "nm": "GDN3",   "url": "https://www.theguardian.com/world/rss"},
     {"lng": "en", "nm": "GDNC",   "url": "https://www.theguardian.com/uk/commentisfree/rss"},
     {"lng": "en", "nm": "HILL",   "url": "https://thehill.com/feed/"},
-    {"lng": "en", "nm": "MSNBC",  "url": "https://www.ms.now/rss"}
+    {"lng": "en", "nm": "MSNBC",  "url": "https://www.ms.now/rss"},
+    {"lng": "hi", "nm": "DB",     "url": "https://www.bhaskar.com/rss-v1--category-4587.xml"},
+    {"lng": "ja", "nm": "ASAHI",  "url": "https://www.asahi.com/rss/asahi/newsheadlines.rdf"},
+    {"lng": "ja", "nm": "NIKKEI",  "url": "https://business.nikkei.com/rss/sns/nb.rdf"}
 ]
 
 try: 
