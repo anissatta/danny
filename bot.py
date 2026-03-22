@@ -199,7 +199,7 @@ try:
 
     cs.execute('''
         select * from mixed
-        where lang = 'en' and used = 0 
+        where lang = 'en' and used = 1 
         order by random() 
         limit 10
     ''')
