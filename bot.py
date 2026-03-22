@@ -81,9 +81,14 @@ outlets = [
     {"lng": "en", "nm": "GDNC",   "url": "https://www.theguardian.com/uk/commentisfree/rss"},
     {"lng": "en", "nm": "HILL",   "url": "https://thehill.com/feed/"},
     {"lng": "en", "nm": "MSNBC",  "url": "https://www.ms.now/rss"},
+    {"lng": "en", "nm": "FOX",    "url": "https://moxie.foxnews.com/google-publisher/latest.xml"},
+    {"lng": "en", "nm": "FP",     "url": "https://foreignpolicy.com/rss"},
+    {"lng": "en", "nm": "ET",     "url": "https://www.etonline.com/news/rss"},
+    {"lng": "en", "nm": "CGTN",   "url": "https://www.cgtn.com/subscribe/rss/section/world.xml"},
+    {"lng": "en", "nm": "NDTV",   "url": "https://feeds.feedburner.com/ndtvnews-latest"},
     {"lng": "hi", "nm": "DB",     "url": "https://www.bhaskar.com/rss-v1--category-4587.xml"},
     {"lng": "ja", "nm": "ASAHI",  "url": "https://www.asahi.com/rss/asahi/newsheadlines.rdf"},
-    {"lng": "ja", "nm": "NIKKEI",  "url": "https://business.nikkei.com/rss/sns/nb.rdf"}
+    {"lng": "ja", "nm": "NIKKEI", "url": "https://business.nikkei.com/rss/sns/nb.rdf"}
 ]
 
 try: 
