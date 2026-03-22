@@ -40,10 +40,23 @@ try:
     ''')
     feeds = cs.fetchall()
     if (len(feeds) == 0): 
-        feed = f.entries[0]
-        f_url = feed.link
-        f_title = feed.title
-        f_lang = "ko"
+        # if yonhap news is unavailable as our "news" outlet, then use others for now. 
+        cs.execute('''
+            select url, title, lang from mixed 
+            where outlet = 'HBIZ' or outlet = 'KPOP' 
+            order by date DESC
+        ''')
+        feeds = cs.fetchall()
+        if (len(feeds) == 0): 
+            feed = f.entries[0]
+            f_url = feed.link
+            f_title = feed.title
+            f_lang = "ko"
+        else: 
+            feed = feeds[0]
+            f_url = feed[0]
+            f_title = '이걸 대신 사용: ' + feed[1]
+            f_lang = feed[2]
     else: 
         feed = feeds[0]
         f_url = feed[0]
@@ -90,7 +103,7 @@ finally:
     cn.close();
 
 subprocess.run(["wkhtmltoimage", "--width", "800", "--crop-y", "320", "--crop-h", "480", f_url, "bot_temp.png"])
-subprocess.run(["right/getfed.sh", f_url, f_title])
+subprocess.run(["right/getfed.sh", f_url, f_title, "ko"])
 
 # top  
 outlets = [
@@ -113,6 +126,7 @@ outlets = [
     {"lng": "en", "nm": "FOX",    "url": "https://moxie.foxnews.com/google-publisher/latest.xml"},
     {"lng": "en", "nm": "FP",     "url": "https://foreignpolicy.com/rss"},
     {"lng": "en", "nm": "ET",     "url": "https://www.etonline.com/news/rss"},
+    {"lng": "en", "nm": "IRAN",   "url": "https://www.iranintl.com/en/feed"},
     {"lng": "en", "nm": "CGTN",   "url": "https://www.cgtn.com/subscribe/rss/section/world.xml"},
     {"lng": "en", "nm": "NDTV",   "url": "https://feeds.feedburner.com/ndtvnews-latest"},
     {"lng": "hi", "nm": "DB",     "url": "https://www.bhaskar.com/rss-v1--category-4587.xml"},
