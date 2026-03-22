@@ -19,12 +19,15 @@ PHOTO_MODTIME=$(stat -c %y snap.jpg)
 VIDEO_MODTIME=$(stat -c %y o.mp4)
 NUM_PHOTOS=$(ls snaps|wc -l)
 MAX_PHOTOS=72
+STAT1="[ $(./get-stat1.py) ]"
 
 echo "{"
 echo "    \"serverUptime\": \"${SERVER_UPTIME}\","
 echo "    \"photoLastModification\": \"${PHOTO_MODTIME}\","
 echo "    \"videoLastModification\": \"${VIDEO_MODTIME}\","
 echo "    \"numberOfUnprocessedPhotos\": ${NUM_PHOTOS},"
-echo "    \"numberOfPhotosPerVideo\": ${MAX_PHOTOS}"
+echo "    \"numberOfPhotosPerVideo\": ${MAX_PHOTOS},"
+# 26. 3. 22 
+echo "    \"statistics1\": ${STAT1}"
 echo "}"
 

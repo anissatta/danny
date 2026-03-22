@@ -5,6 +5,7 @@ import subprocess
 import datetime
 import random
 import sqlite3
+from kiwipiepy import Kiwi
 
 try: 
     cn = sqlite3.connect("turk.db")
@@ -53,6 +54,34 @@ try:
             where url = ? 
         ''', 
         (f_url,))
+
+    # word (noun only) count using Kiwipiepy. 
+    cs.execute('''
+        create table if not exists stat1 (
+            word text primary key, 
+            count integer
+        )
+    ''')
+    kiwi = Kiwi()
+    tks = kiwi.tokenize(f_title)
+    for tk in tks: 
+        if tk.tag == "NNG" or \
+           tk.tag == "NNP" or \
+           tk.tag == "NNB": 
+            w = tk.form
+            cs.execute('''
+                insert or ignore into stat1 
+                (word, count) 
+                values (?, ?)
+            ''', 
+            (w, 0))
+            cs.execute('''
+                update stat1 
+                set count = count + 1 
+                where word = ? 
+            ''', 
+            (w,))
+
     cn.commit();
 except Exception as e: 
     print(e)
