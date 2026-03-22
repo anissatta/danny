@@ -1,10 +1,11 @@
 #!/bin/sh
 
-FRS=3
-XFRS=3
+echo $1
+FRS=504
+XFRS=164
 
 annt_msg() {
-	convert bot_temp.png -font ./DungGeunMo.ttf -gravity NorthWest -pointsize 24 -stroke navy -annotate +132+16 "$1" bot_temp.png
+	convert bot_temp.png -font ./DungGeunMo.ttf -gravity NorthWest -pointsize 24 -stroke pink -annotate +132+16 "$1" bot_temp.png
 }
 
 h=$(date +"%k")
@@ -45,4 +46,10 @@ cat /home/user/kamsys/top/head.html /home/user/kamsys/top/core /home/user/kamsys
 wkhtmltoimage --width 1920 --crop-h 214 /home/user/kamsys/top/index.html top.png
 # make semi-transparent 
 convert top.png -alpha set -channel A -evaluate set 60% top.png
+
+# another one #3. 
+cat /home/user/kamsys/bottom/head.html /home/user/kamsys/bottom/core /home/user/kamsys/bottom/tail.html > /home/user/kamsys/bottom/index.html 
+wkhtmltoimage --width 800 --crop-h 320 /home/user/kamsys/bottom/index.html bottom.png
+# make semi-transparent 
+convert bottom.png -alpha set -channel A -evaluate set 60% bottom.png
 

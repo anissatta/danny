@@ -89,7 +89,7 @@ except Exception as e:
 finally: 
     cn.close();
 
-subprocess.run(["wkhtmltoimage", "--width", "800", "--crop-h", "800", f_url, "bot_temp.png"])
+subprocess.run(["wkhtmltoimage", "--width", "800", "--crop-y", "320", "--crop-h", "480", f_url, "bot_temp.png"])
 subprocess.run(["right/getfed.sh", f_url, f_title])
 
 # top  
@@ -191,4 +191,26 @@ try:
     subprocess.run(["wkhtmltoimage", "--width", "320", "--crop-y", "321", "--crop-h", "480", url_art, "fright.png"])
 except Exception as e: 
     print(e)
+
+# 26. 3. 22 
+try: 
+    cn = sqlite3.connect("turk.db")
+    cs = cn.cursor()
+
+    cs.execute('''
+        select * from mixed
+        where lang = 'en' and used = 0 
+        order by random() 
+        limit 10
+    ''')
+    feeds = cs.fetchall()
+    args = ["bottom/getfed.sh"]
+    for feed in feeds: 
+        args.append(feed[1])
+    subprocess.run(args)
+
+except Exception as e: 
+    print(e)
+finally: 
+    cn.close();
 

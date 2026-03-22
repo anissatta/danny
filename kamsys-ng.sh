@@ -45,10 +45,12 @@ mkdir arcs
     # 26. 3. 17 
     composite -gravity NorthWest -geometry +800+280 right.png snap-xl.jpg snap-xl.jpg
     composite -gravity NorthWest -geometry +0+74 top.png snap-xl.jpg snap-xl.jpg
+    # 26. 3. 22 
+    composite -gravity SouthWest -geometry +0+0 bottom.png snap-xl.jpg snap-xl.jpg
     cp snap-xl.jpg snap.jpg
     convert snap-xl.jpg -gravity South -pointsize 50 -stroke grey -annotate +0+30 $(date -Iminutes) snap-xl.jpg
     # 26. 3. 15 
-    convert snap-xl.jpg -font ./DungGeunMo.ttf -gravity North -pointsize 24 -stroke green -annotate +0+0 "$(./news.py)" snap-xl.jpg
+    convert snap-xl.jpg -font ./DungGeunMo.ttf -gravity North -pointsize 24 -stroke orange -annotate +0+0 "$(./news.py)" snap-xl.jpg
     # upload it. 
     upload_via_ftp snap-xl.jpg
 
@@ -56,7 +58,7 @@ mkdir arcs
     convert snap.jpg -resize x800 snap.jpg
     convert snap.jpg -gravity South -pointsize 30 -stroke orange -annotate +0+30 $(date -Iminutes) snap.jpg
     # 26. 3. 15 
-    convert snap.jpg -font ./DungGeunMo.ttf -gravity North -pointsize 22 -stroke green -annotate +0+0 "$(./news.py)" snap.jpg
+    convert snap.jpg -font ./DungGeunMo.ttf -gravity North -pointsize 22 -stroke orange -annotate +0+0 "$(./news.py)" snap.jpg
     # backup it. 
     cp snap.jpg "snaps/$(date -Iminutes).jpg"
 
@@ -75,6 +77,12 @@ mkdir arcs
     ./print_mdjson.sh > metadata.json
     upload_via_ftp metadata.json
 
-#    sleep 300
+    ### this code shall beat their4 strategy up.  
+    rm -f o-remote.mp4
+    wget https://kangdaegae.web.fc2.com/misc/o.mp4 -O o-remote.mp4
+    cmp o.mp4 o-remote.mp4 || upload_via_ftp o.mp4
+    ### 
+
+#    sleep 291
 #done
 
