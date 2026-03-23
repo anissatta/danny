@@ -1,4 +1,47 @@
 # turk 
+- (26. 3. 23 Part3) 夜間に聯合ニュースのフィードが枯渇した場合をテストしておきたいのでこの機能をしばらくランダムに呼び出すようにします。実行環境上でのコードの変更点は下記の通りです: 
+```python
+    cs.execute('''
+        select url, title, lang from mixed 
+        where used = 0 and outlet in ('HBIZ', 'KPOP', 'PBS', 'SDOT', 'MSNBC', 'FOX') 
+        order by random()
+    ''')
+    feeds_alt = cs.fetchall()
+    if (len(feeds_alt) != 0 and random.randint(0, 5) == 0): 
+        prefer_alt = True
+    else: 
+        prefer_alt = False
+    if (len(feeds) == 0 or prefer_alt): 
+        # if yonhap news is unavailable for us now or, 
+        # we feel like using some other news outlets, 
+        # then try using one of them. 
+        if (len(feeds_alt) == 0): 
+            feed = f.entries[0]
+            f_url = feed.link
+            f_title = feed.title
+            f_lang = "ko"
+        else: 
+            feed = feeds_alt[0]
+            f_url = feed[0]
+            #f_title = '이걸 대신 사용: ' + feed[1]
+            f_title = feed[1]
+            f_lang = feed[2]        
+            cs.execute('''
+                update mixed set used = 1 
+                where url = ? 
+            ''', 
+            (f_url,))
+    else: 
+        feed = feeds[0]
+        f_url = feed[0]
+        f_title = feed[1]
+        f_lang = feed[2]
+        cs.execute('''
+            update feeds set used = 1 
+            where url = ? 
+        ''', 
+        (f_url,))
+```
 - (26. 3. 23 Part2) 画面上部に表示していたNewsisのフィードも停滞することがあったようなので別の方法でニュースを取得するよう変更しました。これに伴い夜間に例の文言が表示されなくなりますが、これは私が義母が悪の根源だと考えていないということを意味するのではありません。 
   - https://github.com/anissatta/turk/commit/0330398641425207cbb3e8c166287ffa3d65fc75
 - (26. 3. 23 Part1) 聯合ニュースが新しい記事をあまり出さない時間帯にフィードが枯渇し同じ記事が連続して表示されるケースがまだあるようなのでそれに対する対策を追加しました。今回はヘラルド経済を使用しましたが、この辺のロジックを予告なしに変更する可能性があります。また聯合ニュースが私に協力して下さらない場合にあまり「良くない」ニュースサイトを取得元に追加するかも知れません。 
