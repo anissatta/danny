@@ -16,9 +16,6 @@ else
 	composite -geometry +8+8 pix/m$(($1%4)).xpm bot_temp.png bot_temp.png
 fi
 
-# make semi-transparent 
-convert bot_temp.png -alpha set -channel A -evaluate set 60% bot_temp.png
-
 # auto-insa :) 
 if [ $h -gt 2 ] && [ $h -lt 8 ]; then
     annt_msg "안녕하세요?"
@@ -40,8 +37,8 @@ composite -gravity SouthEast -geometry +0+0 cf/fr$(printf %03d $(($1%$FRS))).png
 composite -gravity North -geometry +0+250 xcf/n$(printf %03d $(($1%$XFRS))).png right.png right.png
 
 # make semi-transparent 
+convert bot_temp.png -alpha set -channel A -evaluate set 60% bot_temp.png
 convert right.png -alpha set -channel A -evaluate set 60% right.png
-# make semi-transparent 
 convert fright.png -alpha set -channel A -evaluate set 60% fright.png
 
 # another one #2. 
