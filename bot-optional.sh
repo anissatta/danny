@@ -14,8 +14,6 @@ if [ $h -gt 4 ] && [ $h -lt 17 ]; then
 	composite -geometry +8+8 pix/w$(($1%4)).xpm bot_temp.png bot_temp.png
 else
 	composite -geometry +8+8 pix/m$(($1%4)).xpm bot_temp.png bot_temp.png
-	# food CF at night :) 
-	composite -gravity SouthEast -geometry +0+0 cf/fr$(printf %03d $(($1%$FRS))).png bot_temp.png bot_temp.png
 fi
 
 # make semi-transparent 
@@ -31,11 +29,16 @@ fi
 
 # another one. 
 cat /home/user/kamsys/right/head.html /home/user/kamsys/right/core /home/user/kamsys/right/tail.html > /home/user/kamsys/right/index.html 
-wkhtmltoimage  --width 800 --crop-h 480 /home/user/kamsys/right/index.html right.png
-# another food CF at night :) 
-if [ $h -lt 5 ] || [ $h -gt 16 ]; then
-    composite -gravity North -geometry +0+250 xcf/n$(printf %03d $(($1%$XFRS))).png right.png right.png
-fi
+wkhtmltoimage --width 800 --crop-h 480 /home/user/kamsys/right/index.html right.png
+
+# :: food CFs :: 
+# the main aim of this is, to make Korean spicy ramens sell more 
+# and threaten the viewers of this including my stepmom so that they may stop 
+# disturbing my project to marry Ms. L, a Korean girl who was one of my 
+# managers while I was working at Amazon
+composite -gravity SouthEast -geometry +0+0 cf/fr$(printf %03d $(($1%$FRS))).png bot_temp.png bot_temp.png
+composite -gravity North -geometry +0+250 xcf/n$(printf %03d $(($1%$XFRS))).png right.png right.png
+
 # make semi-transparent 
 convert right.png -alpha set -channel A -evaluate set 60% right.png
 # make semi-transparent 
