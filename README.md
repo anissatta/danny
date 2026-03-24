@@ -1,4 +1,6 @@
 # turk 
+- (26. 3. 23 Part2) 猫のが多少は効果があったように思えるのでもう少し複雑な動きをする犬を描く処理も追加しました。 
+  - https://github.com/anissatta/home-project/blob/main/dog/drawdogs.py
 - (26. 3. 23 Part1) 恐らく流れていると思われる噂への対策として白猫を表示する処理を追加しました。白猫の座標と使用する画像は下記のスクリプトにて決定しています。 
   - https://github.com/anissatta/home-project/blob/main/neko/getoneko.py
 - この猫の絵は私が書いたものではなくて下記から引用したものです。 
