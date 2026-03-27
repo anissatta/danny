@@ -1,4 +1,10 @@
 # turk 
+- (26. 3. 28 Part2) tomoyo.pyは結局こんな感じになっています。 
+  - https://github.com/anissatta/turk/blob/main/top/tomo.py
+  - これを https://github.com/anissatta/turk/blob/main/top/getfed.sh が呼び出し、標準出力(STDOUT)に書き出されたものを下記のようにHTMLファイルに追加していますね。 
+```shell
+echo $(do_ask "$art_tit") >> $dest
+```
 - (26. 3. 28 Part1) もしかするとturkに対して行った変更を公開しないようにしたことが原因で噂が流れているのかも知れませんので一部公開することにしました。汚いコードなのでお見せしたくはなかったのですが。 
   - https://github.com/anissatta/turk/commit/3439a24151e7c2c46a977209b40b574a28aad7ce
 - (26. 3. 23 Part2) 猫のが多少は効果があったように思えるのでもう少し複雑な動きをする犬を描く処理も追加しました。 
