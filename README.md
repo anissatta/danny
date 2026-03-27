@@ -1,4 +1,14 @@
 # turk 
+- (26. 3. 28 Part3) ブログの記事名を表示するのも下記のような簡単な仕掛けです。これが原因で噂が流れていたのだとすると、あまりにもおかしいです。 
+  - https://github.com/anissatta/turk/blob/main/news.py
+```python
+feed_url = "https://mycatiskorean.blogspot.com//feeds/posts/default"
+fp = feedparser.parse(feed_url)
+if (len(fp.entries) != 0): 
+    latest = fp.entries[0]
+    print(latest.title)
+    print(latest.link)
+```
 - (26. 3. 28 Part2) tomoyo.pyは結局こんな感じになっています。 
   - https://github.com/anissatta/turk/blob/main/top/tomo.py
   - これを https://github.com/anissatta/turk/blob/main/top/getfed.sh が呼び出し、標準出力(STDOUT)に書き出されたものを下記のようにHTMLファイルに追加していますね。 
