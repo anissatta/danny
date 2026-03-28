@@ -1,4 +1,6 @@
 # turk 
+- (26. 3. 29) これが噂の対策になるかも知れませんので試験的に下部の小窓に表示される情報を抑制し背景となっている映像を識別し易くしました。 
+  - https://github.com/anissatta/turk/blob/main/drawbottom.sh
 - (26. 3. 28 Part3) ブログの記事名を表示するのも下記のような簡単な仕掛けです。これが原因で噂が流れていたのだとすると、あまりにもおかしいです。 
   - https://github.com/anissatta/turk/blob/main/news.py
 ```python
