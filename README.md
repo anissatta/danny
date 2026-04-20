@@ -1,5 +1,6 @@
 # danny (f.k.a. turk) 
 ### DIE JAPS! 
+- Danny was created in the hope that it'll be helpful for those beautiful kids in Korea. So it may suddenly start cleaning worthless trashes here in Tonda up, so beware, people. Beware. Beware. Beware. I repeat: Stop making shit or you'll be cleaned up in the future. 
 ### 2026년 4월 16일 
 - *제가 만든 일*에 *turk*라는 이름을 준 건 Mechanical Turk( https://en.wikipedia.org/wiki/Mechanical_Turk )에 관한 농담을 하고 싶었기 때문이고 튀르키예 분들에 대한 일이 아니였는데요, 오늘 그에게 새 이름을 주고 그런 농담을 다시는 하지 않을 것입니다. 
 - 저는 결국 그에게 대니(Danny)라는 새 이름을 주기로 했어요. 이건 다음 기사서 소개된 소설에 등장하는 로봇 베이비시터의 이름입니다. 저는 이 소설을 한번도 읽은 적이 없지만 우리가 아이들의 생명과 안전을 기원하는 이날에 주기에 좋은 이름이라고 저는 상상했답니다. 이 소설 속에서 이 로봇 베이비시터가 할머니의 사랑을 받을 수도 있지만 저는 김건희 같은 여자들에게 대니 같은 로봇이 대응을 하고 분들이 저에 대해 아무 소문도 내지 않기를 같이 바라고 있습니다. 
