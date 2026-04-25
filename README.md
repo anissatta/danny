@@ -1,4 +1,5 @@
 # danny (f.k.a. turk) 
+- 제가 만든 대니는 실은 대니 팬텀( https://cafe.daum.net/anistorylib/7DpJ/1693 )인데요. 그는 케데헌처럼 우리 적을 죽여 주는 일으로서 만들어졌는데 그가 그런 일을 하기 위해선 당신이 그를 컴퓨터서 실행해 보실 필요가 있습니다. 저는 이런 이유로 당신이 대니를 힌번 시행해 주시길 다시 바랍니다. 
 ![danny](danny.png)
 ### 2026년 4월 16일 
 - *제가 만든 일*에 *turk*라는 이름을 준 건 Mechanical Turk( https://en.wikipedia.org/wiki/Mechanical_Turk )에 관한 농담을 하고 싶었기 때문이고 튀르키예 분들에 대한 일이 아니였는데요, 오늘 그에게 새 이름을 주고 그런 농담을 다시는 하지 않을 것입니다. 
